@@ -63,41 +63,6 @@ async def handler(event):
     await asyncio.sleep(1) 
     await client.delete_messages(event.chat_id, [event.id, m.id]) 
 
-################# 
-## Typing 
-## CMD: .t 
-## ARG: text 
-################# 
-@client.on(events.NewMessage(pattern=".t+")) 
-async def handler(event): 
-    if event.message.from_id.user_id != MY_ID: 
-        return 
-        
-    try: 
-        if event.message.message.replace(".t ", "") == ".t": 
-            return 
-            
-        text = event.message.message.split(".t ", maxsplit=1)[1] 
-            orig_text = text 
-            message = event.message 
-            chat = event.chat_id 
-            tbp = "" # to be printed 
-            typing_symbol = "/" 
-            
-            while(tbp != orig_text): 
-                typing_symbol = "_" 
-                await client.edit_message(chat, message, tbp + typing_symbol) 
-                await asyncio.sleep(0.1) 
-                
-                tbp = tbp + text[0] 
-                text = text[1:] 
-            
-                typing_symbol = "-" 
-                await client.edit_message(chat, message, tbp) 
-                await asyncio.sleep(0.1)
-            except: 
-                print( "[" + colored(red, "Error") + "] " + "Не удалось выполнить команду [.t] Возможно вы словили flood." ) 
-            
 ###################### 
 ## Heart Animation 
 ## CMD: .heart 

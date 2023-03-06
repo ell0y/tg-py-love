@@ -77,8 +77,7 @@ async def handler(event):
         if event.message.message.replace(".t ", "") == ".t": 
             return 
             
-        text      =
-        event.message.message.split(".t ", maxsplit=1)[1] 
+        text = event.message.message.split(".t ", maxsplit=1)[1] 
             orig_text = text 
             message = event.message 
             chat = event.chat_id 
